@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_bonus_utils.c                        :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aandom <aandom@student.abudhabi42.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 23:44:38 by aandom            #+#    #+#             */
-/*   Updated: 2023/01/19 22:17:57 by aandom           ###   ########.fr       */
+/*   Updated: 2023/01/20 13:34:58 by aandom           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ void	free_ln_list(t_list *ln_lst)
 		free(cur_node);
 		cur_node = next_node;
 	}
+	free(cur_node);
 }
 
 int	ft_strlen(const char *str)

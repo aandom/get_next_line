@@ -12,6 +12,16 @@
 
 #include "get_next_line.h"
 
+int	ft_strlen(const char *str)
+{
+	int	slen;
+
+	slen = 0;
+	while (str[slen])
+		slen++;
+	return (slen);
+}
+
 int	check_newline(t_list *ln_lst)
 {
 	int		i;
@@ -35,8 +45,12 @@ t_list	*get_last_node(t_list *ln_lst)
 	t_list	*last_node;
 
 	last_node = ln_lst;
-	while (last_node && last_node->next)
+	while (last_node)
+	{
+		if (!last_node->next)
+			break ;
 		last_node = last_node->next;
+	}
 	return (last_node);
 }
 
@@ -59,6 +73,17 @@ void	create_line(char **line, t_list *ln_lst)
 			slen++;
 			i++;
 		}
+		// while (*(ln_lst->content + i))
+		// {
+		// 	if (*(ln_lst->content + i) == '\n')
+		// 	{
+		// 		slen++;
+		// 		break ;
+		// 	}
+		// 	i++;
+		// 	slen++;
+		// }
+
 		ln_lst = ln_lst->next;
 	}
 	*line = malloc(sizeof(char) * (slen + 1));
@@ -77,14 +102,4 @@ void	free_ln_list(t_list *ln_lst)
 		free(cur_node);
 		cur_node = next_node;
 	}
-}
-
-int	ft_strlen(const char *str)
-{
-	int	len;
-
-	len = 0;
-	while (str[len])
-		len++;
-	return (len);
 }

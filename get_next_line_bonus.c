@@ -6,7 +6,7 @@
 /*   By: aandom <aandom@student.abudhabi42.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 05:44:08 by aandom            #+#    #+#             */
-/*   Updated: 2023/01/20 00:43:31 by aandom           ###   ########.fr       */
+/*   Updated: 2023/01/21 13:21:54 by aandom           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,18 @@ char	*get_next_line(int fd)
 {
 	static t_list	*lst[1024];
 	char			*readed_line;
-	t_list			*ln_list;
 
-	ln_list = lst[fd];
 	if (fd < 0 || BUFFER_SIZE <= 0 || (read(fd, &readed_line, 0) < 0))
 		return (NULL);
-	read_to_ln_list(fd, &ln_list);
-	if (ln_list == NULL)
+	read_to_ln_list(fd, &(lst[fd]));
+	if (lst[fd] == NULL)
 		return (NULL);
-	copy_to_line(ln_list, &readed_line);
-	clean_ln_list(&ln_list);
+	copy_to_line(lst[fd], &readed_line);
+	clean_ln_list(&lst[fd]);
 	if (readed_line[0] == '\0')
 	{
-		free_ln_list(ln_list);
-		ln_list = NULL;
+		free_ln_list(lst[fd]);
+		lst[fd] = NULL;
 		free(readed_line);
 		return (NULL);
 	}
@@ -44,7 +42,7 @@ void	read_to_ln_list(int fd, t_list **ln_list)
 	readed_chars = 1;
 	while (!check_newline(*ln_list) && readed_chars != 0)
 	{
-		tmp_buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+		tmp_buffer = malloc(sizeof(char) * (((size_t) BUFFER_SIZE) + 1));
 		if (!tmp_buffer)
 			return ;
 		readed_chars = (int) read (fd, tmp_buffer, BUFFER_SIZE);

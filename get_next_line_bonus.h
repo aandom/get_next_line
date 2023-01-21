@@ -6,12 +6,12 @@
 /*   By: aandom <aandom@student.abudhabi42.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 05:51:40 by aandom            #+#    #+#             */
-/*   Updated: 2023/01/19 20:45:57 by aandom           ###   ########.fr       */
+/*   Updated: 2023/01/21 16:57:34 by aandom           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#ifndef GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H
 
 # include <stdio.h> // REMOVE FOR PUSH
 # include <stdlib.h>
